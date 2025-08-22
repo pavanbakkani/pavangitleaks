@@ -17,7 +17,8 @@ jobs:
         with:
           args: detect --source . --report-format csv --report-path gitleaks-report.csv
 
-      - name: Upload SARIF report to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Upload CSV report as artifact
+        uses: actions/upload-artifact@v4
         with:
-          sarif_file: gitleaks-report.sarif
+          name: gitleaks-csv-report
+          path: gitleaks-report.csv
