@@ -12,13 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Gitleaks with CSV output
+      - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         with:
-          args: detect --source . --config gitleaks.toml --report-format csv --report-path gitleaks-report.csv
+          args: detect --source . --report-format sarif --report-path gitleaks-report.sarif
 
-      - name: Upload CSV report as artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload SARIF report to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          name: gitleaks-csv-report
-          path: gitleaks-report.csv
+          sarif_file: gitleaks-report.sarif
