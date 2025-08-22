@@ -15,7 +15,7 @@ jobs:
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         with:
-          args: detect --source . --report-format sarif --report-path gitleaks-report.sarif
+          args: detect --source . --report-format csv --report-path gitleaks-report.csv
 
       - name: Upload SARIF report to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
